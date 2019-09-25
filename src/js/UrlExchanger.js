@@ -4,6 +4,7 @@ import {TypeCheck as HotballoonTypeCheck} from '@flexio-oss/hotballoon'
 import {assertType} from '@flexio-oss/assert'
 import {ActionsHandler} from './ActionsHandler'
 import {UrlChanger} from './UrlChanger'
+import {UrlHandler} from './UrlHandler'
 
 export class UrlExchanger {
   /**
@@ -30,7 +31,6 @@ export class UrlExchanger {
      */
     this.__historyClient = historyClient
 
-
     /**
      *
      * @type {ActionsHandler}
@@ -38,28 +38,27 @@ export class UrlExchanger {
      */
     this.__actions = new ActionsHandler(dispatcher)
 
+    /**
+     *
+     * @type {UrlHandler}
+     * @private
+     */
     this.__urlHandler = new UrlHandler(
-      new UrlChanger(router),
+      new UrlChanger(
+        router,
+        historyClient
+      ),
       historyClient,
       this.__actions
     )
-
-    this.init()
   }
-
-  init() {
-    this.__actions
-      .replaceUrlByUrlAction
-      .listenWithCallback()
-  }
-
-
 
   /**
    *
    * @param {FlexUrl} url
+   * @param {?Object} historyState
    */
-  dispatchPushUrlByUrl(url) {
+  dispatchPushUrlByUrl(url, historyState) {
     this.__actions
       .pushUrlByUrlAction
       .dispatch(
@@ -67,6 +66,7 @@ export class UrlExchanger {
           .pushUrlByUrlAction
           .payloadBuilder()
           .url(url)
+          .historyState(historyState)
           .build()
       )
   }
@@ -75,8 +75,9 @@ export class UrlExchanger {
    *
    * @param {string} name
    * @param {Object} parameters
+   * @param {?Object} historyState
    */
-  dispatchPushUrlByRouteName(name, parameters) {
+  dispatchPushUrlByRouteName(name, parameters, historyState) {
     this.__actions
       .pushUrlByRouteNameAction
       .dispatch(
@@ -85,6 +86,7 @@ export class UrlExchanger {
           .payloadBuilder()
           .name(name)
           .parameters(parameters)
+          .historyState(historyState)
           .build()
       )
   }
@@ -92,8 +94,9 @@ export class UrlExchanger {
   /**
    *
    * @param {FlexUrl} url
+   * @param {?Object} historyState
    */
-  dispatchReplaceUrlByUrl(url) {
+  dispatchReplaceUrlByUrl(url, historyState) {
     this.__actions
       .replaceUrlByUrlAction
       .dispatch(
@@ -101,6 +104,7 @@ export class UrlExchanger {
           .replaceUrlByUrlAction
           .payloadBuilder()
           .url(url)
+          .historyState(historyState)
           .build()
       )
   }
@@ -109,8 +113,9 @@ export class UrlExchanger {
    *
    * @param {string} name
    * @param {Object} parameters
+   * @param {?Object} historyState
    */
-  dispatchReplaceUrlByRouteName(name, parameters) {
+  dispatchReplaceUrlByRouteName(name, parameters, historyState) {
     this.__actions
       .replaceUrlByRouteNameAction
       .dispatch(
@@ -119,6 +124,7 @@ export class UrlExchanger {
           .payloadBuilder()
           .name(name)
           .parameters(parameters)
+          .historyState(historyState)
           .build()
       )
   }

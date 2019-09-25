@@ -2,61 +2,95 @@ export class UrlChanger {
   /**
    *
    * @param {Router} router
+   * @param {HistoryClient} historyClient
    */
-  constructor(router){
+  constructor(router, historyClient) {
+    /**
+     *
+     * @type {Router}
+     * @private
+     */
     this.__router = router
+    /**
+     *
+     * @type {HistoryClient}
+     * @private
+     */
+    this.__historyClient = historyClient
   }
+
   /**
    *
    * @param {FlexUrl} url
-   * @return {UrlExchanger}
+   * @param {?Object} historyState
+   * @return {FlexUrl}
    */
-  pushByUrl(url) {
-    this.__changeUrl(url)
-    return this
+  pushByUrl(url, historyState) {
+    this.__historyClient.pushState(
+      this.__historyClient
+        .historyStateBuilder()
+        .url(url)
+        .state(historyState)
+        .build()
+    )
+    return url
   }
 
   /**
    *
    * @param {string} name
    * @param {?Object} [routeParameters=null]
-   * @return {UrlExchanger}
+   * @param {?Object} historyState
+   * @return {FlexUrl}
    * @throws {RouteException}
    */
-  pushByRouteName(name, routeParameters) {
+  pushByRouteName(name, routeParameters, historyState) {
     const url = this.__router.urlByRouteName(name, routeParameters)
-    this.__changeUrl(url)
-    return this
+    this.__historyClient.pushState(
+      this.__historyClient
+        .historyStateBuilder()
+        .url(url)
+        .state(historyState)
+        .build()
+    )
+    return url
   }
+
   /**
    *
    * @param {FlexUrl} url
-   * @return {UrlExchanger}
+   * @param {?Object} historyState
+   * @return {FlexUrl}
    */
-  replaceByUrl(url) {
-    this.__changeUrl(url)
-    return this
+  replaceByUrl(url, historyState) {
+    this.__historyClient.replaceState(
+      this.__historyClient
+        .historyStateBuilder()
+        .url(url)
+        .state(historyState)
+        .build()
+    )
+    return url
   }
 
   /**
    *
    * @param {string} name
    * @param {?Object} [routeParameters=null]
-   * @return {UrlExchanger}
+   * @param {?Object} historyState
+   * @return {FlexUrl}
    * @throws {RouteException}
    */
-  replaceByRouteName(name, routeParameters) {
+  replaceByRouteName(name, routeParameters, historyState) {
     const url = this.__router.urlByRouteName(name, routeParameters)
-    this.__changeUrl(url)
-    return this
+    this.__historyClient.replaceState(
+      this.__historyClient
+        .historyStateBuilder()
+        .url(url)
+        .state(historyState)
+        .build()
+    )
+    return url
   }
 
-  /**
-   *
-   * @param {FlexUrl} url
-   * @private
-   */
-  __changeUrl(url) {
-
-  }
 }

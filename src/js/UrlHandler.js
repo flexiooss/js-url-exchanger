@@ -28,8 +28,13 @@ export class UrlHandler {
     this.__actionsHandler = actionsHandler
 
     this.__listenActions()
+    this.__listenHistory()
   }
 
+  /**
+   *
+   * @private
+   */
   __listenActions() {
     this.__actionsHandler
       .replaceUrlByUrlAction
@@ -82,14 +87,35 @@ export class UrlHandler {
 
   /**
    *
+   * @private
+   */
+  __listenHistory() {
+    this.__historyClient
+      .onPopState(
+        /**
+         *
+         * @param {HistoryState} historyState
+         */
+        (historyState) => {
+          this.__dispatchUrlChanged(historyState.location())
+        }
+      )
+  }
+
+  /**
+   *
    * @param {PushUrlByUrlAction} payload
    * @private
    */
   __pushByUrl(payload) {
-    this.__urlChanger
-      .pushByUrl(payload.url())
 
-    this.__dispatchUrlPushed(payload.url())
+    this.__dispatchUrlPushed(
+      this.__urlChanger
+        .pushByUrl(
+          payload.url(),
+          payload.historyState()
+        )
+    )
 
   }
 
@@ -100,7 +126,14 @@ export class UrlHandler {
    */
   __pushByRouteName(payload) {
 
-    this.__dispatchUrlPushed(url)
+    this.__dispatchUrlPushed(
+      this.__urlChanger
+        .pushByRouteName(
+          payload.name(),
+          payload.parameters(),
+          payload.historyState()
+        )
+    )
   }
 
   /**
@@ -109,7 +142,13 @@ export class UrlHandler {
    * @private
    */
   __replaceByUrl(payload) {
-    this.__dispatchUrlReplaced(payload.url())
+    this.__dispatchUrlReplaced(
+      this.__urlChanger
+        .replaceByUrl(
+          payload.url(),
+          payload.historyState()
+        )
+    )
 
   }
 
@@ -119,7 +158,14 @@ export class UrlHandler {
    * @private
    */
   __replaceByRouteName(payload) {
-    this.__dispatchUrlReplaced(url)
+    this.__dispatchUrlReplaced(
+      this.__urlChanger
+        .replaceByRouteName(
+          payload.name(),
+          payload.parameters(),
+          payload.historyState()
+        )
+    )
   }
 
   /**
