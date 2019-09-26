@@ -12,7 +12,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<PushUrlByUrlAction>}
+     * @type {ActionDispatcher<PushUrlByUrlAction, PushUrlByUrlActionBuilder>}
      * @private
      */
     this.__pushUrlByUrlAction = new ActionDispatcherBuilder()
@@ -22,7 +22,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<PushUrlByRouteNameAction>}
+     * @type {ActionDispatcher<PushUrlByRouteNameAction, PushUrlByRouteNameActionBuilder>}
      * @private
      */
     this.__pushUrlByRouteNameAction = new ActionDispatcherBuilder()
@@ -32,7 +32,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<ReplaceUrlByUrlAction>}
+     * @type {ActionDispatcher<ReplaceUrlByUrlAction, ReplaceUrlByUrlActionBuilder>}
      * @private
      */
     this.__replaceUrlByUrlAction = new ActionDispatcherBuilder()
@@ -42,7 +42,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<ReplaceUrlByRouteNameAction>}
+     * @type {ActionDispatcher<ReplaceUrlByRouteNameAction, ReplaceUrlByRouteNameActionBuilder>}
      * @private
      */
     this.__replaceUrlByRouteNameAction = new ActionDispatcherBuilder()
@@ -52,7 +52,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<UrlPushed>}
+     * @type {ActionDispatcher<UrlPushed, UrlPushedBuilder>}
      * @private
      */
     this.__urlPushed = new ActionDispatcherBuilder()
@@ -62,7 +62,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<UrlReplaced>}
+     * @type {ActionDispatcher<UrlReplaced, UrlReplacedBuilder>}
      * @private
      */
     this.__urlReplaced = new ActionDispatcherBuilder()
@@ -72,7 +72,7 @@ export class ActionsHandler {
 
     /**
      *
-     * @type {ActionDispatcher<UrlChanged>}
+     * @type {ActionDispatcher<UrlChanged, UrlChangedBuilder>}
      * @private
      */
     this.__urlChanged = new ActionDispatcherBuilder()
@@ -84,7 +84,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<PushUrlByUrlAction>}
+   * @return {ActionDispatcher<PushUrlByUrlAction, PushUrlByUrlActionBuilder>}
    */
   get pushUrlByUrlAction() {
     return this.__pushUrlByUrlAction
@@ -92,7 +92,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<PushUrlByRouteNameAction>}
+   * @return {ActionDispatcher<PushUrlByRouteNameAction, PushUrlByRouteNameActionBuilder>}
    */
   get pushUrlByRouteNameAction() {
     return this.__pushUrlByRouteNameAction
@@ -100,7 +100,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<ReplaceUrlByUrlAction>}
+   * @return {ActionDispatcher<ReplaceUrlByUrlAction, ReplaceUrlByUrlActionBuilder>}
    */
   get replaceUrlByUrlAction() {
     return this.__replaceUrlByUrlAction
@@ -108,7 +108,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<ReplaceUrlByRouteNameAction>}
+   * @return {ActionDispatcher<ReplaceUrlByRouteNameAction, ReplaceUrlByRouteNameActionBuilder>}
    */
   get replaceUrlByRouteNameAction() {
     return this.__replaceUrlByRouteNameAction
@@ -116,7 +116,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<UrlPushed>}
+   * @return {ActionDispatcher<UrlPushed, UrlPushedBuilder>}
    */
   get urlPushed() {
     return this.__urlPushed
@@ -124,7 +124,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<UrlReplaced>}
+   * @return {ActionDispatcher<UrlReplaced, UrlReplacedBuilder>}
    */
   get urlReplaced() {
     return this.__urlReplaced
@@ -132,7 +132,7 @@ export class ActionsHandler {
 
   /**
    *
-   * @return {ActionDispatcher<UrlChanged>}
+   * @return {ActionDispatcher<UrlChanged, UrlChangedBuilder>}
    */
   get urlChanged() {
     return this.__urlChanged
