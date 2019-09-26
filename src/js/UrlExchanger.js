@@ -5,6 +5,7 @@ import {assertType} from '@flexio-oss/assert'
 import {ActionsHandler} from './ActionsHandler'
 import {UrlChanger} from './UrlChanger'
 import {UrlHandler} from './UrlHandler'
+import {FlexUrlBuilder} from '@flexio-oss/extended-flex-types'
 
 export class UrlExchanger {
   /**
@@ -55,10 +56,31 @@ export class UrlExchanger {
 
   /**
    *
-   * @param {FlexUrl} url
-   * @param {?Object} historyState
+   * @param {Location} location
+   * @param {?Object} [historyState=null]
    */
-  dispatchPushUrlByUrl(url, historyState) {
+  dispatchPushUrlByLocation(location, historyState = null) {
+
+    assertType(
+      location instanceof Location,
+      'UrlExchanger:dispatchPushUrlByLocation: `location` should be a `Location`'
+    )
+
+    this.dispatchPushUrlByUrl(
+      new FlexUrlBuilder()
+        .value(location.href)
+        .build(),
+      historyState
+    )
+
+  }
+
+  /**
+   *
+   * @param {FlexUrl} url
+   * @param {?Object} [historyState=null]
+   */
+  dispatchPushUrlByUrl(url, historyState = null) {
     this.__actions
       .pushUrlByUrlAction
       .dispatch(
@@ -75,9 +97,9 @@ export class UrlExchanger {
    *
    * @param {string} name
    * @param {Object} parameters
-   * @param {?Object} historyState
+   * @param {?Object} [historyState=null]
    */
-  dispatchPushUrlByRouteName(name, parameters, historyState) {
+  dispatchPushUrlByRouteName(name, parameters, historyState = null) {
     this.__actions
       .pushUrlByRouteNameAction
       .dispatch(
@@ -93,10 +115,31 @@ export class UrlExchanger {
 
   /**
    *
-   * @param {FlexUrl} url
-   * @param {?Object} historyState
+   * @param {Location} location
+   * @param {?Object} [historyState=null]
    */
-  dispatchReplaceUrlByUrl(url, historyState) {
+  dispatchReplaceUrlByLocation(location, historyState = null) {
+
+    assertType(
+      location instanceof Location,
+      'UrlExchanger:dispatchReplaceUrlByLocation: `location` should be a `Location`'
+    )
+
+    this.dispatchReplaceUrlByUrl(
+      new FlexUrlBuilder()
+        .value(location.href)
+        .build(),
+      historyState
+    )
+
+  }
+
+  /**
+   *
+   * @param {FlexUrl} url
+   * @param {?Object} [historyState=null]
+   */
+  dispatchReplaceUrlByUrl(url, historyState = null) {
     this.__actions
       .replaceUrlByUrlAction
       .dispatch(
@@ -113,9 +156,9 @@ export class UrlExchanger {
    *
    * @param {string} name
    * @param {Object} parameters
-   * @param {?Object} historyState
+   * @param {?Object} [historyState=null]
    */
-  dispatchReplaceUrlByRouteName(name, parameters, historyState) {
+  dispatchReplaceUrlByRouteName(name, parameters, historyState = null) {
     this.__actions
       .replaceUrlByRouteNameAction
       .dispatch(
