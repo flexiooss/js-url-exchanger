@@ -97,7 +97,7 @@ export class UrlHandler {
          * @param {HistoryState} historyState
          */
         (historyState) => {
-          this.__dispatchUrlChanged(historyState.location())
+          this.__dispatchUrlChanged(historyState.url())
         }
       )
   }
@@ -116,7 +116,6 @@ export class UrlHandler {
           payload.historyState()
         )
     )
-
   }
 
   /**
