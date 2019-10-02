@@ -1,13 +1,13 @@
 import {ActionDispatcherBuilder} from '@flexio-oss/hotballoon'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
-import {assertType} from '../../../assert'
-import {TypeCheck} from '../../../hotballoon'
+import {assertType} from '@flexio-oss/assert'
+import {TypeCheck} from '@flexio-oss/hotballoon'
 
 export class ActionsHandler {
   constructor(dispatcher) {
     assertType(
       TypeCheck.isDispatcher(dispatcher),
-      'UrlExchanger:ActionsHandler: '
+      'UrlExchanger:ActionsHandler: `dispatcher` should be a Dispatcher'
     )
 
     /**
