@@ -6,8 +6,9 @@ export class UrlHandler {
    * @param {UrlChanger} urlChanger
    * @param {HistoryClient} historyClient
    * @param {ActionsHandler} actionsHandler
+   * @param {ComponentContext} componentContext
    */
-  constructor(urlChanger, historyClient, actionsHandler) {
+  constructor(urlChanger, historyClient, actionsHandler, componentContext) {
     /**
      *
      * @type {UrlChanger}
@@ -27,6 +28,13 @@ export class UrlHandler {
      */
     this.__actionsHandler = actionsHandler
 
+    /**
+     *
+     * @type {ComponentContext}
+     * @private
+     */
+    this.__componentContext = componentContext
+
     this.__listenActions()
     this.__listenHistory()
   }
@@ -45,7 +53,8 @@ export class UrlHandler {
          */
         (payload) => {
           this.__replaceByUrl(payload)
-        }
+        },
+        this.__componentContext
       )
 
     this.__actionsHandler
@@ -57,7 +66,8 @@ export class UrlHandler {
          */
         (payload) => {
           this.__replaceByRouteName(payload)
-        }
+        },
+        this.__componentContext
       )
 
     this.__actionsHandler
@@ -69,7 +79,8 @@ export class UrlHandler {
          */
         (payload) => {
           this.__pushByUrl(payload)
-        }
+        },
+        this.__componentContext
       )
 
     this.__actionsHandler
@@ -81,7 +92,8 @@ export class UrlHandler {
          */
         (payload) => {
           this.__pushByRouteName(payload)
-        }
+        },
+        this.__componentContext
       )
   }
 

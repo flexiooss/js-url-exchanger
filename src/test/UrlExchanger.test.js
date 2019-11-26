@@ -1,7 +1,7 @@
 /* global runTest */
 import {TestCase} from 'code-altimeter-js'
 import {UrlExchanger} from '../js/UrlExchanger'
-import {Dispatcher} from '@flexio-oss/hotballoon'
+import {ApplicationBuilder, Dispatcher} from '@flexio-oss/hotballoon'
 import {StandAloneHistoryClient} from '@flexio-oss/js-history-client'
 import {RouterBuilder} from '@flexio-oss/js-router'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
@@ -15,7 +15,6 @@ const historyStateObjectValue = {hello: 1, budy: 2}
 
 export class UrlExchangerTest extends TestCase {
   setUp() {
-
     this.router = RouterBuilder.build(
       RouterBuilder.urlConfigurationBuilder()
         .hostname('toto.fr')
@@ -24,13 +23,20 @@ export class UrlExchangerTest extends TestCase {
     )
 
     this.historyClient = new StandAloneHistoryClient()
+    const logger = new FakeLogger()
+
+    this.app = new ApplicationBuilder()
+      .id('test')
+      .dispatcher(new Dispatcher(logger))
+      .logger(logger)
+      .build()
 
     this.urlExchanger = new UrlExchanger(
       this.historyClient,
       this.router,
-      new Dispatcher(new FakeLogger())
+      new Dispatcher(new FakeLogger()),
+      this.app.addComponentContext()
     )
-
   }
 
   /**
@@ -39,14 +45,12 @@ export class UrlExchangerTest extends TestCase {
    * @private
    */
   __addRoute1() {
-    this.router
-      .addRoute(
-        this.router.routeBuilder()
-          .build(
-            'route1',
-            'bibi/bubu/{id}'
-          )
-      )
+    const route = this.router.routeBuilder()
+      .name('route1')
+      .urlTemplate('/bibi/bubu/{id}')
+      .build()
+
+    this.router.addRoute(route)
 
     return new globalFlexioImport.io.flexio.extended_flex_types
       .FlexUrlBuilder()

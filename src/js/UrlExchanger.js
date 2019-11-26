@@ -13,8 +13,9 @@ export class UrlExchanger {
    * @param {HistoryClient} historyClient
    * @param {Router} router
    * @param {Dispatcher} dispatcher
+   * @param {ComponentContext} componentContext
    */
-  constructor(historyClient, router, dispatcher) {
+  constructor(historyClient, router, dispatcher, componentContext) {
     assertType(historyClient instanceof HistoryClient,
       'ComponentRouter:constructor: `historyClient` argument should be a HistoryClient'
     )
@@ -23,6 +24,9 @@ export class UrlExchanger {
     )
     assertType(HotballoonTypeCheck.isDispatcher(dispatcher),
       'ComponentRouter:constructor: `dispatcher` argument should be a Dispatcher'
+    )
+    assertType(HotballoonTypeCheck.isComponentContext(componentContext),
+      'ComponentRouter:constructor: `componentContext` argument should be a ComponentContext'
     )
 
     /**
@@ -39,6 +43,8 @@ export class UrlExchanger {
      */
     this.__actions = new ActionsHandler(dispatcher)
 
+    this.__componentContext = componentContext
+
     /**
      *
      * @type {UrlHandler}
@@ -47,10 +53,11 @@ export class UrlExchanger {
     this.__urlHandler = new UrlHandler(
       new UrlChanger(
         router,
-        historyClient
+        historyClient,
       ),
       historyClient,
-      this.__actions
+      this.__actions,
+      this.__componentContext
     )
   }
 
@@ -180,7 +187,7 @@ export class UrlExchanger {
   listenUrlPushed(clb) {
     return this.__actions
       .urlPushed
-      .listenWithCallback(clb)
+      .listenWithCallback(clb, this.__componentContext)
   }
 
   /**
@@ -191,7 +198,7 @@ export class UrlExchanger {
   listenUrlReplaced(clb) {
     return this.__actions
       .urlReplaced
-      .listenWithCallback(clb)
+      .listenWithCallback(clb, this.__componentContext)
   }
 
   /**
@@ -202,7 +209,7 @@ export class UrlExchanger {
   listenUrlChanged(clb) {
     return this.__actions
       .urlChanged
-      .listenWithCallback(clb)
+      .listenWithCallback(clb, this.__componentContext)
   }
 
 }
