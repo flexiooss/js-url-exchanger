@@ -24,7 +24,7 @@ export class UrlChanger {
   /**
    *
    * @param {FlexUrl} url
-   * @param {?Object} historyState
+   * @param {ObjectValue} historyState
    * @return {FlexUrl}
    */
   pushByUrl(url, historyState) {
@@ -47,7 +47,7 @@ export class UrlChanger {
    * @throws {RouteException}
    */
   pushByRouteName(name, routeParameters, historyState) {
-    const url = this.__router.urlByRouteName(name, routeParameters)
+    const url = this.__router.urlByRouteName(name, routeParameters.toObject())
 
     this.__historyClient.pushState(
       this.__historyClient
@@ -85,7 +85,7 @@ export class UrlChanger {
    * @throws {RouteException}
    */
   replaceByRouteName(name, routeParameters, historyState) {
-    const url = this.__router.urlByRouteName(name, routeParameters)
+    const url = this.__router.urlByRouteName(name, routeParameters.toObject())
     this.__historyClient.replaceState(
       this.__historyClient
         .historyStateBuilder()
