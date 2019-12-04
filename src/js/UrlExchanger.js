@@ -148,8 +148,6 @@ export class UrlExchanger {
    * @param {?Object} [historyState={}]
    */
   dispatchReplaceUrlByUrl(url, historyState = {}) {
-    console.log('dryby', historyState)
-    
     this.__actions
       .replaceUrlByUrlAction()
       .dispatch(

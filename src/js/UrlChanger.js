@@ -66,8 +66,6 @@ export class UrlChanger {
    * @return {FlexUrl}
    */
   replaceByUrl(url, historyState={}) {
-    console.log('rby', historyState)
-
     this.__historyClient.replaceState(
       this.__historyClient
         .historyStateBuilder()
