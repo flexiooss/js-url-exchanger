@@ -89,10 +89,10 @@ export class UrlExchanger {
    */
   dispatchPushUrlByUrl(url, historyState = null) {
     this.__actions
-      .pushUrlByUrlAction
+      .pushUrlByUrlAction()
       .dispatch(
         this.__actions
-          .pushUrlByUrlAction
+          .pushUrlByUrlAction()
           .payloadBuilder()
           .url(url)
           .historyState(historyState)
@@ -108,10 +108,10 @@ export class UrlExchanger {
    */
   dispatchPushUrlByRouteName(name, parameters, historyState = null) {
     this.__actions
-      .pushUrlByRouteNameAction
+      .pushUrlByRouteNameAction()
       .dispatch(
         this.__actions
-          .pushUrlByRouteNameAction
+          .pushUrlByRouteNameAction()
           .payloadBuilder()
           .name(name)
           .parameters(parameters)
@@ -148,10 +148,10 @@ export class UrlExchanger {
    */
   dispatchReplaceUrlByUrl(url, historyState = null) {
     this.__actions
-      .replaceUrlByUrlAction
+      .replaceUrlByUrlAction()
       .dispatch(
         this.__actions
-          .replaceUrlByUrlAction
+          .replaceUrlByUrlAction()
           .payloadBuilder()
           .url(url)
           .historyState(historyState)
@@ -167,10 +167,10 @@ export class UrlExchanger {
    */
   dispatchReplaceUrlByRouteName(name, parameters, historyState = null) {
     this.__actions
-      .replaceUrlByRouteNameAction
+      .replaceUrlByRouteNameAction()
       .dispatch(
         this.__actions
-          .replaceUrlByRouteNameAction
+          .replaceUrlByRouteNameAction()
           .payloadBuilder()
           .name(name)
           .parameters(parameters)
@@ -186,7 +186,7 @@ export class UrlExchanger {
    */
   listenUrlPushed(clb) {
     return this.__actions
-      .urlPushed
+      .urlPushed()
       .listenWithCallback(clb, this.__componentContext)
   }
 
@@ -197,7 +197,7 @@ export class UrlExchanger {
    */
   listenUrlReplaced(clb) {
     return this.__actions
-      .urlReplaced
+      .urlReplaced()
       .listenWithCallback(clb, this.__componentContext)
   }
 
@@ -208,8 +208,7 @@ export class UrlExchanger {
    */
   listenUrlChanged(clb) {
     return this.__actions
-      .urlChanged
+      .urlChanged()
       .listenWithCallback(clb, this.__componentContext)
   }
-
 }

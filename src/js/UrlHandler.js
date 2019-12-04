@@ -45,7 +45,7 @@ export class UrlHandler {
    */
   __listenActions() {
     this.__actionsHandler
-      .replaceUrlByUrlAction
+      .replaceUrlByUrlAction()
       .listenWithCallback(
         /**
          *
@@ -58,7 +58,7 @@ export class UrlHandler {
       )
 
     this.__actionsHandler
-      .replaceUrlByRouteNameAction
+      .replaceUrlByRouteNameAction()
       .listenWithCallback(
         /**
          *
@@ -71,7 +71,7 @@ export class UrlHandler {
       )
 
     this.__actionsHandler
-      .pushUrlByUrlAction
+      .pushUrlByUrlAction()
       .listenWithCallback(
         /**
          *
@@ -84,7 +84,7 @@ export class UrlHandler {
       )
 
     this.__actionsHandler
-      .pushUrlByRouteNameAction
+      .pushUrlByRouteNameAction()
       .listenWithCallback(
         /**
          *
@@ -120,7 +120,6 @@ export class UrlHandler {
    * @private
    */
   __pushByUrl(payload) {
-
     this.__dispatchUrlPushed(
       this.__urlChanger
         .pushByUrl(
@@ -136,7 +135,6 @@ export class UrlHandler {
    * @private
    */
   __pushByRouteName(payload) {
-
     this.__dispatchUrlPushed(
       this.__urlChanger
         .pushByRouteName(
@@ -186,10 +184,10 @@ export class UrlHandler {
    */
   __dispatchUrlPushed(url) {
     this.__actionsHandler
-      .urlPushed
+      .urlPushed()
       .dispatch(
         this.__actionsHandler
-          .urlPushed
+          .urlPushed()
           .payloadBuilder()
           .url(url)
           .build()
@@ -205,10 +203,10 @@ export class UrlHandler {
    */
   __dispatchUrlReplaced(url) {
     this.__actionsHandler
-      .urlReplaced
+      .urlReplaced()
       .dispatch(
         this.__actionsHandler
-          .urlReplaced
+          .urlReplaced()
           .payloadBuilder()
           .url(url)
           .build()
@@ -224,10 +222,10 @@ export class UrlHandler {
    */
   __dispatchUrlChanged(url) {
     this.__actionsHandler
-      .urlChanged
+      .urlChanged()
       .dispatch(
         this.__actionsHandler
-          .urlChanged
+          .urlChanged()
           .payloadBuilder()
           .url(url)
           .build()

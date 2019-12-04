@@ -1,7 +1,6 @@
-import {ActionDispatcherBuilder} from '@flexio-oss/hotballoon'
+import {ActionDispatcherBuilder, TypeCheck} from '@flexio-oss/hotballoon'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 import {assertType} from '@flexio-oss/assert'
-import {TypeCheck} from '@flexio-oss/hotballoon'
 
 export class ActionsHandler {
   constructor(dispatcher) {
@@ -86,7 +85,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<PushUrlByUrlAction, PushUrlByUrlActionBuilder>}
    */
-  get pushUrlByUrlAction() {
+  pushUrlByUrlAction() {
     return this.__pushUrlByUrlAction
   }
 
@@ -94,7 +93,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<PushUrlByRouteNameAction, PushUrlByRouteNameActionBuilder>}
    */
-  get pushUrlByRouteNameAction() {
+  pushUrlByRouteNameAction() {
     return this.__pushUrlByRouteNameAction
   }
 
@@ -102,7 +101,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<ReplaceUrlByUrlAction, ReplaceUrlByUrlActionBuilder>}
    */
-  get replaceUrlByUrlAction() {
+  replaceUrlByUrlAction() {
     return this.__replaceUrlByUrlAction
   }
 
@@ -110,7 +109,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<ReplaceUrlByRouteNameAction, ReplaceUrlByRouteNameActionBuilder>}
    */
-  get replaceUrlByRouteNameAction() {
+  replaceUrlByRouteNameAction() {
     return this.__replaceUrlByRouteNameAction
   }
 
@@ -118,7 +117,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<UrlPushed, UrlPushedBuilder>}
    */
-  get urlPushed() {
+  urlPushed() {
     return this.__urlPushed
   }
 
@@ -126,7 +125,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<UrlReplaced, UrlReplacedBuilder>}
    */
-  get urlReplaced() {
+  urlReplaced() {
     return this.__urlReplaced
   }
 
@@ -134,7 +133,7 @@ export class ActionsHandler {
    *
    * @return {ActionDispatcher<UrlChanged, UrlChangedBuilder>}
    */
-  get urlChanged() {
+  urlChanged() {
     return this.__urlChanged
   }
 }
