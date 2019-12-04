@@ -151,6 +151,8 @@ export class UrlHandler {
    * @private
    */
   __replaceByUrl(payload) {
+    console.log('couou')
+
     this.__dispatchUrlReplaced(
       this.__urlChanger
         .replaceByUrl(

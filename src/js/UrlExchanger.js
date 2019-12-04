@@ -6,6 +6,7 @@ import {ActionsHandler} from './ActionsHandler'
 import {UrlChanger} from './UrlChanger'
 import {UrlHandler} from './UrlHandler'
 import {FlexUrlBuilder} from '@flexio-oss/extended-flex-types'
+import {ObjectValue, ObjectValueBuilder} from '@flexio-oss/flex-types'
 
 export class UrlExchanger {
   /**
@@ -95,7 +96,7 @@ export class UrlExchanger {
           .pushUrlByUrlAction()
           .payloadBuilder()
           .url(url)
-          .historyState(historyState)
+          .historyState(ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
@@ -114,8 +115,8 @@ export class UrlExchanger {
           .pushUrlByRouteNameAction()
           .payloadBuilder()
           .name(name)
-          .parameters(parameters)
-          .historyState(historyState)
+          .parameters(ObjectValueBuilder.fromObject(parameters).build())
+          .historyState(ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
@@ -144,9 +145,11 @@ export class UrlExchanger {
   /**
    *
    * @param {FlexUrl} url
-   * @param {?Object} [historyState=null]
+   * @param {?Object} [historyState={}]
    */
-  dispatchReplaceUrlByUrl(url, historyState = null) {
+  dispatchReplaceUrlByUrl(url, historyState = {}) {
+    console.log('dryby', historyState)
+    
     this.__actions
       .replaceUrlByUrlAction()
       .dispatch(
@@ -154,7 +157,7 @@ export class UrlExchanger {
           .replaceUrlByUrlAction()
           .payloadBuilder()
           .url(url)
-          .historyState(historyState)
+          .historyState(ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
@@ -163,9 +166,9 @@ export class UrlExchanger {
    *
    * @param {string} name
    * @param {Object} parameters
-   * @param {?Object} [historyState=null]
+   * @param {?Object} [historyState={}]
    */
-  dispatchReplaceUrlByRouteName(name, parameters, historyState = null) {
+  dispatchReplaceUrlByRouteName(name, parameters={}, historyState = {}) {
     this.__actions
       .replaceUrlByRouteNameAction()
       .dispatch(
@@ -173,8 +176,8 @@ export class UrlExchanger {
           .replaceUrlByRouteNameAction()
           .payloadBuilder()
           .name(name)
-          .parameters(parameters)
-          .historyState(historyState)
+          .parameters(ObjectValueBuilder.fromObject(parameters).build())
+          .historyState(ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }

@@ -1,3 +1,5 @@
+import {globalFlexioImport} from '@flexio-oss/global-import-registry'
+
 export class UrlChanger {
   /**
    *
@@ -39,13 +41,14 @@ export class UrlChanger {
   /**
    *
    * @param {string} name
-   * @param {?Object} [routeParameters=null]
-   * @param {?Object} historyState
+   * @param {ObjectValue} routeParameters
+   * @param {ObjectValue} historyState
    * @return {FlexUrl}
    * @throws {RouteException}
    */
   pushByRouteName(name, routeParameters, historyState) {
     const url = this.__router.urlByRouteName(name, routeParameters)
+
     this.__historyClient.pushState(
       this.__historyClient
         .historyStateBuilder()
@@ -59,10 +62,12 @@ export class UrlChanger {
   /**
    *
    * @param {FlexUrl} url
-   * @param {?Object} historyState
+   * @param {ObjectValue} historyState
    * @return {FlexUrl}
    */
-  replaceByUrl(url, historyState) {
+  replaceByUrl(url, historyState={}) {
+    console.log('rby', historyState)
+
     this.__historyClient.replaceState(
       this.__historyClient
         .historyStateBuilder()
@@ -76,8 +81,8 @@ export class UrlChanger {
   /**
    *
    * @param {string} name
-   * @param {?Object} [routeParameters=null]
-   * @param {?Object} historyState
+   * @param {ObjectValue} routeParameters
+   * @param {ObjectValue} historyState
    * @return {FlexUrl}
    * @throws {RouteException}
    */
