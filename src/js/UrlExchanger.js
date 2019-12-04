@@ -6,8 +6,8 @@ import {ActionsHandler} from './ActionsHandler'
 import {UrlChanger} from './UrlChanger'
 import {UrlHandler} from './UrlHandler'
 import {FlexUrlBuilder} from '@flexio-oss/extended-flex-types'
-import {ObjectValueBuilder} from '@flexio-oss/flex-types'
 import {TypeCheck as PrimitiveTypeCheck} from '@flexio-oss/assert'
+import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 
 export class UrlExchanger {
   /**
@@ -82,7 +82,6 @@ export class UrlExchanger {
         .build(),
       historyState
     )
-
   }
 
   /**
@@ -100,7 +99,7 @@ export class UrlExchanger {
           .pushUrlByUrlAction()
           .payloadBuilder()
           .url(url)
-          .historyState(ObjectValueBuilder.fromObject(historyState).build())
+          .historyState(globalFlexioImport.io.flexio.flex_types.ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
@@ -122,8 +121,8 @@ export class UrlExchanger {
           .pushUrlByRouteNameAction()
           .payloadBuilder()
           .name(name)
-          .parameters(ObjectValueBuilder.fromObject(parameters).build())
-          .historyState(ObjectValueBuilder.fromObject(historyState).build())
+          .parameters(globalFlexioImport.io.flexio.flex_types.ObjectValueBuilder.fromObject(parameters).build())
+          .historyState(globalFlexioImport.io.flexio.flex_types.ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
@@ -147,7 +146,6 @@ export class UrlExchanger {
         .build(),
       historyState
     )
-
   }
 
   /**
@@ -165,7 +163,7 @@ export class UrlExchanger {
           .replaceUrlByUrlAction()
           .payloadBuilder()
           .url(url)
-          .historyState(ObjectValueBuilder.fromObject(historyState).build())
+          .historyState(globalFlexioImport.io.flexio.flex_types.ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
@@ -187,8 +185,8 @@ export class UrlExchanger {
           .replaceUrlByRouteNameAction()
           .payloadBuilder()
           .name(name)
-          .parameters(ObjectValueBuilder.fromObject(parameters).build())
-          .historyState(ObjectValueBuilder.fromObject(historyState).build())
+          .parameters(globalFlexioImport.io.flexio.flex_types.ObjectValueBuilder.fromObject(parameters).build())
+          .historyState(globalFlexioImport.io.flexio.flex_types.ObjectValueBuilder.fromObject(historyState).build())
           .build()
       )
   }
