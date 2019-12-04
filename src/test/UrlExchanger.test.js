@@ -100,7 +100,7 @@ export class UrlExchangerTest extends TestCase {
         .build(),
       'history state should be updated'
     )
-    assert(this.historyClient.length() === 2, 'history state should be pushed')
+    assert.strictEqual(this.historyClient.length(), 2, 'history state should be pushed')
   }
 
   testListenPushedByRoute() {
@@ -146,7 +146,7 @@ export class UrlExchangerTest extends TestCase {
         .build(),
       'history state should be updated'
     )
-    assert(this.historyClient.length() === 2, 'history state should be pushed')
+    assert.strictEqual(this.historyClient.length(), 2, 'history state should be pushed')
   }
 
   testListenReplacedByUrl() {
@@ -191,7 +191,7 @@ export class UrlExchangerTest extends TestCase {
         .build(),
       'history state should be updated'
     )
-    assert(this.historyClient.length() === 1, 'history state should be replaced')
+    assert.strictEqual(this.historyClient.length(), 1, 'history state should be replaced')
 
   }
 
@@ -238,7 +238,7 @@ export class UrlExchangerTest extends TestCase {
         .build(),
       'history state should be updated'
     )
-    assert(this.historyClient.length() === 1, 'history state should be replaced')
+    assert.strictEqual(this.historyClient.length(), 1, 'history state should be replaced')
   }
 }
 
