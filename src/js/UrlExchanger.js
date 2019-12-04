@@ -6,7 +6,8 @@ import {ActionsHandler} from './ActionsHandler'
 import {UrlChanger} from './UrlChanger'
 import {UrlHandler} from './UrlHandler'
 import {FlexUrlBuilder} from '@flexio-oss/extended-flex-types'
-import {ObjectValue, ObjectValueBuilder} from '@flexio-oss/flex-types'
+import {ObjectValueBuilder} from '@flexio-oss/flex-types'
+import {TypeCheck as PrimitiveTypeCheck} from '@flexio-oss/assert'
 
 export class UrlExchanger {
   /**
@@ -65,9 +66,10 @@ export class UrlExchanger {
   /**
    *
    * @param {Location} location
-   * @param {?Object} [historyState=null]
+   * @param {?Object} [historyState={}]
    */
-  dispatchPushUrlByLocation(location, historyState = null) {
+  dispatchPushUrlByLocation(location, historyState = {}) {
+    PrimitiveTypeCheck.assertIsStrictObject(historyState)
 
     assertType(
       location instanceof Location,
@@ -86,9 +88,11 @@ export class UrlExchanger {
   /**
    *
    * @param {FlexUrl} url
-   * @param {?Object} [historyState=null]
+   * @param {?Object} [historyState={}]
    */
-  dispatchPushUrlByUrl(url, historyState = null) {
+  dispatchPushUrlByUrl(url, historyState = {}) {
+    PrimitiveTypeCheck.assertIsStrictObject(historyState)
+
     this.__actions
       .pushUrlByUrlAction()
       .dispatch(
@@ -105,9 +109,12 @@ export class UrlExchanger {
    *
    * @param {string} name
    * @param {Object} parameters
-   * @param {?Object} [historyState=null]
+   * @param {?Object} [historyState={}]
    */
-  dispatchPushUrlByRouteName(name, parameters, historyState = null) {
+  dispatchPushUrlByRouteName(name, parameters, historyState = {}) {
+    PrimitiveTypeCheck.assertIsStrictObject(parameters)
+    PrimitiveTypeCheck.assertIsStrictObject(historyState)
+
     this.__actions
       .pushUrlByRouteNameAction()
       .dispatch(
@@ -124,9 +131,10 @@ export class UrlExchanger {
   /**
    *
    * @param {Location} location
-   * @param {?Object} [historyState=null]
+   * @param {?Object} [historyState={}]
    */
-  dispatchReplaceUrlByLocation(location, historyState = null) {
+  dispatchReplaceUrlByLocation(location, historyState = {}) {
+    PrimitiveTypeCheck.assertIsStrictObject(historyState)
 
     assertType(
       location instanceof Location,
@@ -148,6 +156,8 @@ export class UrlExchanger {
    * @param {?Object} [historyState={}]
    */
   dispatchReplaceUrlByUrl(url, historyState = {}) {
+    PrimitiveTypeCheck.assertIsStrictObject(historyState)
+
     this.__actions
       .replaceUrlByUrlAction()
       .dispatch(
@@ -167,6 +177,9 @@ export class UrlExchanger {
    * @param {?Object} [historyState={}]
    */
   dispatchReplaceUrlByRouteName(name, parameters={}, historyState = {}) {
+    PrimitiveTypeCheck.assertIsStrictObject(parameters)
+    PrimitiveTypeCheck.assertIsStrictObject(historyState)
+
     this.__actions
       .replaceUrlByRouteNameAction()
       .dispatch(
