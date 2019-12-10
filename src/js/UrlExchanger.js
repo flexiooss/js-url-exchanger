@@ -1,12 +1,11 @@
 import {HistoryClient} from '@flexio-oss/js-history-client'
 import {TypeCheck as RouterTypeCheck} from '@flexio-oss/js-router'
 import {TypeCheck as HotballoonTypeCheck} from '@flexio-oss/hotballoon'
-import {assertType} from '@flexio-oss/assert'
+import {assertType, TypeCheck as PrimitiveTypeCheck} from '@flexio-oss/assert'
 import {ActionsHandler} from './ActionsHandler'
 import {UrlChanger} from './UrlChanger'
 import {UrlHandler} from './UrlHandler'
 import {FlexUrlBuilder} from '@flexio-oss/extended-flex-types'
-import {TypeCheck as PrimitiveTypeCheck} from '@flexio-oss/assert'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 
 export class UrlExchanger {
@@ -107,10 +106,10 @@ export class UrlExchanger {
   /**
    *
    * @param {string} name
-   * @param {Object} parameters
+   * @param {?Object} [parameters={}]
    * @param {?Object} [historyState={}]
    */
-  dispatchPushUrlByRouteName(name, parameters, historyState = {}) {
+  dispatchPushUrlByRouteName(name, parameters={}, historyState = {}) {
     PrimitiveTypeCheck.assertIsStrictObject(parameters)
     PrimitiveTypeCheck.assertIsStrictObject(historyState)
 
@@ -174,7 +173,7 @@ export class UrlExchanger {
    * @param {Object} parameters
    * @param {?Object} [historyState={}]
    */
-  dispatchReplaceUrlByRouteName(name, parameters={}, historyState = {}) {
+  dispatchReplaceUrlByRouteName(name, parameters = {}, historyState = {}) {
     PrimitiveTypeCheck.assertIsStrictObject(parameters)
     PrimitiveTypeCheck.assertIsStrictObject(historyState)
 
