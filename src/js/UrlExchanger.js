@@ -194,7 +194,7 @@ export class UrlExchanger {
   /**
    *
    * @param {ActionDispatcher~eventClb<UrlPushed>} clb
-   * @returns {String} token
+   * @returns {String} externalChooserPublic
    */
   listenUrlPushed(clb) {
     return this.__actions
@@ -205,7 +205,7 @@ export class UrlExchanger {
   /**
    *
    * @param {ActionDispatcher~eventClb<UrlReplaced>} clb
-   * @returns {String} token
+   * @returns {String} externalChooserPublic
    */
   listenUrlReplaced(clb) {
     return this.__actions
@@ -216,7 +216,7 @@ export class UrlExchanger {
   /**
    *
    * @param {ActionDispatcher~eventClb<UrlChanged>} clb
-   * @returns {String} token
+   * @returns {String} externalChooserPublic
    */
   listenUrlChanged(clb) {
     return this.__actions
