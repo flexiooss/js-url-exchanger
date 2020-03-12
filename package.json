@@ -1,6 +1,6 @@
 {
   "name": "@flexio-oss/js-url-exchanger",
-  "version": "1.0.0-dev",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/flexiooss/js-url-exchanger.git",
   "author": "Thomas Chatelain (https://github.com/TomAchT)",
