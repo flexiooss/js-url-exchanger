@@ -1,0 +1,40 @@
+{
+  "name": "@flexio-oss/js-url-exchanger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/flexiooss/js-url-exchanger.git",
+  "author": "Thomas Chatelain (https://github.com/TomAchT)",
+  "devDependencies": {
+    "code-altimeter-js": "https://github.com/flexiooss/code-altimeter-js.git"
+  },
+  "dependencies": {
+    "@flexio-corp/js-hotballoon-parent": "0.2.0",
+    "@flexio-oss/js-history-client": "1.0.0",
+    "@flexio-oss/js-router": "1.0.0"
+  },
+  "peerDependencies": {
+    "@flexio-oss/js-logger": ">0.0.0",
+    "@flexio-oss/hotballoon": ">0.0.0",
+    "@flexio-oss/assert": ">0.0.0",
+    "@flexio-oss/flex-types": ">0.0.0",
+    "@flexio-oss/global-import-registry": ">0.0.0",
+    "@flexio-oss/js-generator-helpers": ">0.0.0",
+    "@flexio-oss/event-handler": ">0.0.0",
+    "@flexio-oss/extended-flex-types": ">0.0.0",
+    "@flexio-oss/js-history-client": ">0.0.0"
+  },
+  "hotballoon-shed": {
+    "build": {
+      "builder": "webpack4"
+    },
+    "test": {
+      "tester": "code-altimeter-js",
+      "path": "src/test"
+    },
+    "generate-sources": {
+      "value-objects": {
+        "extension": ".spec"
+      }
+    }
+  }
+}
